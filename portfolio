@@ -1,0 +1,5 @@
+git init
+git remote add origin https://github.com/saurabh730919/myfile.py
+git add .
+git commit -m "Initial commit - personal portfolio website"
+git push -u origin master
