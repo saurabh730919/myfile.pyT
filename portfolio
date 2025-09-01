@@ -1,5 +1,65 @@
-git init
-git remote add origin https://github.com/saurabh730919/myfile.py
-git add .
-git commit -m "Initial commit - personal portfolio website"
-git push -u origin master
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export default function Portfolio() {
+  const [activeTab, setActiveTab] = useState("projects");
+
+  const projects = [
+    { title: "Project A", desc: "Cool project description", link: "#" },
+    { title: "Project B", desc: "Another project details", link: "#" },
+  ];
+
+  const posts = [
+    { title: "Blog Post 1", desc: "Insights about tech", link: "#" },
+    { title: "Blog Post 2", desc: "Another article", link: "#" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 p-8">
+      {/* SEO meta tags */}
+      <head>
+        <title>My Portfolio</title>
+        <meta name="description" content="Portfolio showcasing projects and blog posts" />
+        <meta name="keywords" content="Portfolio, Projects, Blog, Developer" />
+        <meta name="author" content="Your Name" />
+      </head>
+
+      <header className="text-center mb-12">
+        <h1 className="text-4xl font-bold">My Portfolio</h1>
+        <p className="text-gray-600">Showcasing my projects & writings</p>
+      </header>
+
+      <div className="flex justify-center space-x-4 mb-8">
+        <Button onClick={() => setActiveTab("projects")} variant={activeTab === "projects" ? "default" : "outline"}>Projects</Button>
+        <Button onClick={() => setActiveTab("posts")} variant={activeTab === "posts" ? "default" : "outline"}>Blog</Button>
+      </div>
+
+      <motion.div
+        key={activeTab}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="grid md:grid-cols-2 gap-6"
+      >
+        {(activeTab === "projects" ? projects : posts).map((item, i) => (
+          <Card key={i} className="shadow-md hover:shadow-lg transition">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+              <p className="text-gray-600 mb-4">{item.desc}</p>
+              <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                View More →
+              </a>
+            </CardContent>
+          </Card>
+        ))}
+      </motion.div>
+
+      <footer className="text-center mt-12 text-gray-500">
+        © {new Date().getFullYear()} Your Name. Built with React + Tailwind.
+      </footer>
+    </div>
+  );
+}
+
