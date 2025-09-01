@@ -57,7 +57,7 @@ export default function Portfolio() {
       </motion.div>
 
       <footer className="text-center mt-12 text-gray-500">
-        © {new Date().getFullYear()} Your Name. Built with React + Tailwind.
+        © {new Date().getFullYear()} saurabh. Built with React + Tailwind.
       </footer>
     </div>
   );
